@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC Hardware Shop - Products</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/products.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    
+    <main id="content" class="container py-5">
+       
+        <h2 class="text-center mt-3">Our Products</h2>
+        <p class="text-center text-muted">Find the best components for your dream PC!</p>
+
+       
+        <h3 class="mt-4">Processors</h3>
+        <div class="row row-cols-1 row-cols-md-5 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="../images/CPU1.PNG" class="card-img-top product-img" alt="CPU1" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('../images/CPU1.PNG')">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">CPU Model 1</h5>
+                        <p class="text-muted">High-performance processor for gaming and work</p>
+                        <p class="fw-bold text-primary">$299.99</p>
+                        <button class="btn btn-primary">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="../images/CPU2.PNG" class="card-img-top product-img" alt="CPU2" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('../images/CPU2.PNG')">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">CPU Model 2</h5>
+                        <p class="text-muted">Next-gen processing power for creators</p>
+                        <p class="fw-bold text-primary">$349.99</p>
+                        <button class="btn btn-primary">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="../images/CPU3.PNG" class="card-img-top product-img" alt="CPU3" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('../images/CPU3.PNG')">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">CPU Model 3</h5>
+                        <p class="text-muted">Fast multi-core performance for professionals</p>
+                        <p class="fw-bold text-primary">$399.99</p>
+                        <button class="btn btn-primary">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="../images/CPU4.PNG" class="card-img-top product-img" alt="CPU4" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('../images/CPU4.PNG')">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">CPU Model 4</h5>
+                        <p class="text-muted">Great balance of performance and efficiency</p>
+                        <p class="fw-bold text-primary">$279.99</p>
+                        <button class="btn btn-primary">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="../images/CPU5.PNG" class="card-img-top product-img" alt="CPU5" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('../images/CPU5.PNG')">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">CPU Model 5</h5>
+                        <p class="text-muted">Budget-friendly processor with great speed</p>
+                        <p class="fw-bold text-primary">$199.99</p>
+                        <button class="btn btn-primary">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Image Modal -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="imageModalLabel">Product Image</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="modalImage" class="modal-img" alt="Product Image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showImage(src) {
+            document.getElementById('modalImage').src = src;
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

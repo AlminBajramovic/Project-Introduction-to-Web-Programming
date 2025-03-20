@@ -1,0 +1,46 @@
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    margin-top: auto;
+    width: 100%;
+}
+
+.product-img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    display: block;
+    margin: auto;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.product-img:hover {
+    transform: scale(1.1);
+}
+
+.modal-img {
+    width: 100%;
+    height: auto;
+}
+
+.sale-card {
+    border: 2px solid red;
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.sale-title {
+    font-weight: bold;
+    color: red;
+    font-size: 20px;
+}
