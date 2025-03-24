@@ -1,0 +1,99 @@
+<main id="content" class="container py-5">
+    <h2 class="text-center mt-3">Our Products</h2>
+    <p class="text-center text-muted">Find the best components for your dream PC!</p>
+
+    <h3 class="mt-4">Bestsellers</h3>
+    <div class="row row-cols-1 row-cols-md-5 g-4">
+        <div class="col">
+            <div class="card h-100">
+                <img src="./assets/CPU1.PNG" class="card-img-top product-img" alt="CPU1" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('./assets/CPU1.PNG')">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Intel Core i7 12700k</h5>
+                    <p class="text-muted">High-performance processor for gaming and work</p>
+                    <p class="fw-bold text-primary">$299.99</p>
+                    <button class="btn btn-primary" onclick="addToCart()">Buy Now</button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <img src="./assets/GPU1.PNG" class="card-img-top product-img" alt="GPU1" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('./assets/GPU1.PNG')">
+                <div class="card-body text-center">
+                    <h5 class="card-title">RTX 5070 TI</h5>
+                    <p class="text-muted">Powerful next-gen GPU for ultra-smooth gaming and rendering</p>
+                    <p class="fw-bold text-primary">$599.99</p>
+                    <button class="btn btn-primary" onclick="addToCart()">Buy Now</button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <img src="./assets/RAM1.PNG" class="card-img-top product-img" alt="RAM1" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('./assets/RAM1.PNG')">
+                <div class="card-body text-center">
+                    <h5 class="card-title">RAM G.SKILL</h5>
+                    <p class="text-muted">High-speed DDR5 memory for seamless multitasking and gaming.</p>
+                    <p class="fw-bold text-primary">$120.99</p>
+                    <button class="btn btn-primary" onclick="addToCart()">Buy Now</button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <img src="./assets/MOBO1.PNG" class="card-img-top product-img" alt="MOBO1" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('./assets/MOBO1.PNG')">
+                <div class="card-body text-center">
+                    <h5 class="card-title">ASUS TUF x870</h5>
+                    <p class="text-muted">Durable high-end motherboard optimized for stability and performance</p>
+                    <p class="fw-bold text-primary">$279.99</p>
+                    <button class="btn btn-primary" onclick="addToCart()">Buy Now</button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <img src="./assets/CPU5.PNG" class="card-img-top product-img" alt="CPU5" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('./assets/CPU5.PNG')">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Ryzen 7 5800x</h5>
+                    <p class="text-muted">High-performance processor for gaming and intensive workloads</p>
+                    <p class="fw-bold text-primary">$359.99</p>
+                    <button class="btn btn-primary" onclick="addToCart()">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Product Image</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="modalImage" class="modal-img" alt="Product Image">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="popup" class="popup">
+    <i class="fas fa-check-circle"></i> Added to Cart
+</div>
+
+<script>
+    function showImage(src) {
+        document.getElementById('modalImage').src = src;
+    }
+
+    function addToCart() {
+        let popup = document.getElementById("popup");
+        popup.classList.add("show");
+
+        setTimeout(() => {
+            popup.classList.remove("show");
+        }, 2000);
+    }
+</script>
+
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
