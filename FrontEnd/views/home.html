@@ -1,24 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PC Hardware Shop - Home</title>
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="../css/home.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-</head>
-<body>
-    <!-- Main Content -->
-    <main id="content" class="container py-5 text-center">
-        <h1>Welcome to PC Hardware Shop</h1>
-        <p>Find the best components for your dream PC!</p>
-        <a href="#" class="btn btn-primary mt-3" onclick="navigateTo('products')">Shop Now</a>
-    </main>
+<main id="content" class="container py-5 text-center">
+    <h1>Welcome to PC Hardware Shop</h1>
+    <p>Find the best components for your dream PC!</p>
+    <button class="btn btn-primary mt-3" onclick="window.location='#products';">Shop Now</button>
 
-    <script src="../js/script.js"></script>
-</body>
-</html>
+    <div class="mt-5">
+        <h2>Don't know how to build a PC? Here's your guide!</h2>
+        <video controls class="w-100 mt-3">
+            <source src="./assets/Video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</main>

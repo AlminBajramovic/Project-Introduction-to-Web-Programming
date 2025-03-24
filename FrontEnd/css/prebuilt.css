@@ -15,9 +15,9 @@ footer {
 
 .product-img {
     width: 100%;
-    height: 200px; /* Ensures all images are uniform */
-    object-fit: contain; /* Keeps aspect ratio and fits within the box */
-    margin: auto; /* Centers the images inside their containers */
+    height: 200px; 
+    object-fit: contain; 
+    margin: auto; 
     display: block;
     transition: transform 0.3s ease-in-out;
     cursor: pointer;
