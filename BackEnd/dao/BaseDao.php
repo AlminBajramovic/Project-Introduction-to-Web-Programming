@@ -23,13 +23,17 @@ class BaseDao {
         return $stmt->fetch();
     }
 
-    public function insert($data) {
-        $columns = implode(", ", array_keys($data));
-        $placeholders = ":" . implode(", :", array_keys($data));
-        $sql = "INSERT INTO " . $this->table . " ($columns) VALUES ($placeholders)";
-        $stmt = $this->connection->prepare($sql);
-        return $stmt->execute($data);
-    }
+   public function insert($data) {
+    $columns = implode(", ", array_keys($data));
+    $placeholders = ":" . implode(", :", array_keys($data));
+    $sql = "INSERT INTO " . $this->table . " ($columns) VALUES ($placeholders)";
+    $stmt = $this->connection->prepare($sql);
+    $stmt->execute($data);
+
+    // 🔥 Vraća ID novog unosa
+    return $this->connection->lastInsertId();
+}
+
 
     public function update($id, $data) {
         $fields = "";
