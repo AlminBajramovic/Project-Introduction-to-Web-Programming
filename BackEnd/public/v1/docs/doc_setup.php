@@ -12,7 +12,7 @@
 */
 /**
 * @OA\Server(
-*     url= "http://localhost/web-programming-2025/backend",
+*     url= "http://localhost/Almin%20Bajramovic/Project-Introduction-to-Web-Programming/BackEnd",
 *     description="API server"
 * )
 */
