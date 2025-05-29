@@ -1,7 +1,7 @@
 <main id="register-page">
     <div class="register-container">
         <h2 class="text-center mb-4">Register</h2>
-        <form>
+        <form id="registerForm"> 
             <div class="mb-3">
                 <label for="fullName" class="form-label">Full Name</label>
                 <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
@@ -30,3 +30,17 @@
 <footer class="register-footer">
     <p>&copy; 2025 PC Hardware Shop</p>
 </footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.js"></script>
+
+<script src="utils/constants.js"></script>
+<script src="utils/utils.js"></script>
+<script src="services/user-service.js"></script>
+
+
+<script>
+    UserService.init();
+    UserService.checkRoleAndShowUI();
+</script>
