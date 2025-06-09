@@ -16,7 +16,7 @@ function parseJwt(token) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    const content = document.getElementById("content");
+    const content = document.getElementById("spapp");
     
     function loadPage(page) {
         fetch(`views/${page}.html`)

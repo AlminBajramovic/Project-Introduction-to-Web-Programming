@@ -1,12 +1,13 @@
 <main id="profile-page">
     <div class="profile-card">
         <img src="./assets/JA.PNG" alt="Profile Picture" class="profile-img">
-        <h2>Almin Bajramović</h2>
+        <h2 id="profile-name">Welcome, User!</h2>
         <p class="text-muted">Tech Enthusiast & PC Builder</p>
         <hr>
         <div class="profile-details">
-            <p><strong>Email:</strong> alko.bajramovic@outlook.com</p>
-            <p><strong>Phone:</strong> +387 62-189-083</p>
+            <p><strong>Email:</strong> <span id="profile-email"></span></p>
+            <p><strong>Role:</strong> <span id="profile-role"></span></p>
+            <p><strong>Phone:</strong> +387 62-189-083</p> 
             <p><strong>Address:</strong> Butmirska 18d, Ilidža</p>
             <p><strong>Joined:</strong> January 2025</p>
         </div>
@@ -15,7 +16,19 @@
 </main>
 
 <script>
-    document.getElementById("logout-btn").addEventListener("click", function() {
-        alert("Logged out successfully!");
+  $(document).ready(function () {
+    const token = localStorage.getItem('user_token');
+    if (token) {
+      const payload = Utils.parseJwt(token);
+      if (payload && payload.user) {
+        $("#profile-name").text("Welcome, " + payload.user.email.split("@")[0]);  
+        $("#profile-email").text(payload.user.email);
+        $("#profile-role").text(payload.user.role);
+      }
+    }
+
+    $("#logout-btn").click(function() {
+      UserService.logout();
     });
+  });
 </script>

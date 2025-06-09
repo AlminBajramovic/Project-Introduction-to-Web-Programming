@@ -9,7 +9,7 @@ class AuthService extends BaseService {
 
     public function __construct() {
         $this->auth_dao = new AuthDao();
-        parent::__construct(new AuthDao);
+        parent::__construct(new AuthDao());
     }
 
     public function get_user_by_email($email){
@@ -17,17 +17,29 @@ class AuthService extends BaseService {
     }
 
     public function register($entity) {  
-        if (empty($entity['email']) || empty($entity['password'])) {
-            return ['success' => false, 'error' => 'Email and password are required.'];
+    
+        if (empty($entity['email']) || empty($entity['password']) || empty($entity['name'])) {
+            return ['success' => false, 'error' => 'Name, email and password are required.'];
         }
 
+       
         $email_exists = $this->auth_dao->get_user_by_email($entity['email']);
         if($email_exists){
             return ['success' => false, 'error' => 'Email already registered.'];
         }
 
+       
         $entity['password'] = password_hash($entity['password'], PASSWORD_BCRYPT);
-        $entity = parent::add($entity);
+
+        
+        if (!isset($entity['role'])) {
+            $entity['role'] = 'user';
+        }
+
+        
+        $entity = parent::create($entity); 
+
+
         unset($entity['password']);
         return ['success' => true, 'data' => $entity];             
     }
@@ -63,3 +75,4 @@ class AuthService extends BaseService {
         return ['success' => true, 'data' => array_merge($user, ['token' => $token])];             
     }
 }
+?>

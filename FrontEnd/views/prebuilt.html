@@ -12,7 +12,7 @@
                     <h5 class="card-title">Gaming Beast</h5>
                     <p class="text-muted">Powerful gaming PC with the latest GPU & CPU.</p>
                     <p class="fw-bold text-primary">$1499.99</p>
-                    <button class="btn btn-primary" onclick="addToCart()">Buy Now</button>
+                    <button class="btn btn-primary" onclick="addToCartProduct(101, 'Gaming Beast', 1499.99)">Buy Now</button>
                 </div>
             </div>
         </div>
@@ -25,7 +25,7 @@
                     <h5 class="card-title">Creator’s Dream</h5>
                     <p class="text-muted">Optimized for content creation & video editing.</p>
                     <p class="fw-bold text-primary">$1999.99</p>
-                    <button class="btn btn-primary" onclick="addToCart()">Buy Now</button>
+                    <button class="btn btn-primary" onclick="addToCartProduct(102, 'Creator’s Dream', 1999.99)">Buy Now</button>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
                     <h5 class="card-title">Office Powerhouse</h5>
                     <p class="text-muted">Reliable PC for office work & multitasking.</p>
                     <p class="fw-bold text-primary">$999.99</p>
-                    <button class="btn btn-primary" onclick="addToCart()">Buy Now</button>
+                    <button class="btn btn-primary" onclick="addToCartProduct(103, 'Office Powerhouse', 999.99)">Buy Now</button>
                 </div>
             </div>
         </div>
@@ -71,7 +71,14 @@
         imageModal.show();
     }
 
-    function addToCart() {
+    function addToCartProduct(id, name, price) {
+        const product = {
+            id: id,
+            name: name,
+            price: price
+        };
+        CartService.addToCart(product);
+
         let popup = document.getElementById("popup");
         popup.classList.add("show");
 
