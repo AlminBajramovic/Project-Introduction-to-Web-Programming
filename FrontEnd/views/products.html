@@ -4,6 +4,8 @@
 
     <h3 class="mt-4">Bestsellers</h3>
     <div class="row row-cols-1 row-cols-md-5 g-4">
+
+        
         <div class="col">
             <div class="card h-100">
                 <img src="./assets/CPU1.PNG" class="card-img-top product-img" alt="CPU1" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('./assets/CPU1.PNG')">
@@ -11,10 +13,12 @@
                     <h5 class="card-title">Intel Core i7 12700k</h5>
                     <p class="text-muted">High-performance processor for gaming and work</p>
                     <p class="fw-bold text-primary">$299.99</p>
-                    <button class="btn btn-primary" onclick="addToCart()">Buy Now</button>
+                    <button class="btn btn-primary" onclick="addToCartProduct(1, 'Intel Core i7 12700k', 299.99)">Buy Now</button>
                 </div>
             </div>
         </div>
+
+        
         <div class="col">
             <div class="card h-100">
                 <img src="./assets/GPU1.PNG" class="card-img-top product-img" alt="GPU1" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('./assets/GPU1.PNG')">
@@ -22,10 +26,12 @@
                     <h5 class="card-title">RTX 5070 TI</h5>
                     <p class="text-muted">Powerful next-gen GPU for ultra-smooth gaming and rendering</p>
                     <p class="fw-bold text-primary">$599.99</p>
-                    <button class="btn btn-primary" onclick="addToCart()">Buy Now</button>
+                    <button class="btn btn-primary" onclick="addToCartProduct(2, 'RTX 5070 TI', 599.99)">Buy Now</button>
                 </div>
             </div>
         </div>
+
+        
         <div class="col">
             <div class="card h-100">
                 <img src="./assets/RAM1.PNG" class="card-img-top product-img" alt="RAM1" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('./assets/RAM1.PNG')">
@@ -33,10 +39,12 @@
                     <h5 class="card-title">RAM G.SKILL</h5>
                     <p class="text-muted">High-speed DDR5 memory for seamless multitasking and gaming.</p>
                     <p class="fw-bold text-primary">$120.99</p>
-                    <button class="btn btn-primary" onclick="addToCart()">Buy Now</button>
+                    <button class="btn btn-primary" onclick="addToCartProduct(3, 'RAM G.SKILL', 120.99)">Buy Now</button>
                 </div>
             </div>
         </div>
+
+       
         <div class="col">
             <div class="card h-100">
                 <img src="./assets/MOBO1.PNG" class="card-img-top product-img" alt="MOBO1" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('./assets/MOBO1.PNG')">
@@ -44,10 +52,12 @@
                     <h5 class="card-title">ASUS TUF x870</h5>
                     <p class="text-muted">Durable high-end motherboard optimized for stability and performance</p>
                     <p class="fw-bold text-primary">$279.99</p>
-                    <button class="btn btn-primary" onclick="addToCart()">Buy Now</button>
+                    <button class="btn btn-primary" onclick="addToCartProduct(4, 'ASUS TUF x870', 279.99)">Buy Now</button>
                 </div>
             </div>
         </div>
+
+       
         <div class="col">
             <div class="card h-100">
                 <img src="./assets/CPU5.PNG" class="card-img-top product-img" alt="CPU5" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('./assets/CPU5.PNG')">
@@ -55,12 +65,14 @@
                     <h5 class="card-title">Ryzen 7 5800x</h5>
                     <p class="text-muted">High-performance processor for gaming and intensive workloads</p>
                     <p class="fw-bold text-primary">$359.99</p>
-                    <button class="btn btn-primary" onclick="addToCart()">Buy Now</button>
+                    <button class="btn btn-primary" onclick="addToCartProduct(5, 'Ryzen 7 5800x', 359.99)">Buy Now</button>
                 </div>
             </div>
         </div>
+
     </div>
 </main>
+
 
 <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -80,12 +92,109 @@
     <i class="fas fa-check-circle"></i> Added to Cart
 </div>
 
+
+<div class="admin-only container mt-5">
+    <h2>Manage Products</h2>
+    <button class="btn btn-success mb-3" onclick="ProductService.openAddModal()">Add New Product</button>
+    <table id="products-table" class="table table-striped"></table>
+</div>
+
+<div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="addProductForm">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addProductModalLabel">Add Product</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group mb-3">
+            <label>Name</label>
+            <input type="text" class="form-control" name="name" required />
+          </div>
+          <div class="form-group mb-3">
+            <label>Price</label>
+            <input type="number" class="form-control" name="price" required step="0.01" />
+          </div>
+          <div class="form-group mb-3">
+            <label>Description</label>
+            <textarea class="form-control" name="description" required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="ProductService.closeModal()">Close</button>
+          <button type="submit" class="btn btn-primary">Save Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="editProductForm">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editProductModalLabel">Edit Product</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" name="id" />
+          <div class="form-group mb-3">
+            <label>Name</label>
+            <input type="text" class="form-control" name="name" required />
+          </div>
+          <div class="form-group mb-3">
+            <label>Price</label>
+            <input type="number" class="form-control" name="price" required step="0.01" />
+          </div>
+          <div class="form-group mb-3">
+            <label>Description</label>
+            <textarea class="form-control" name="description" required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="ProductService.closeModal()">Close</button>
+          <button type="submit" class="btn btn-primary">Update Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="deleteProductModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteProductModalLabel">Delete Product</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="delete-product-body">
+        Are you sure you want to delete this product?
+      </div>
+      <div class="modal-footer">
+        <input type="hidden" id="delete_product_id" />
+        <button type="button" class="btn btn-secondary" onclick="ProductService.closeModal()">Close</button>
+        <button type="button" class="btn btn-danger" onclick="ProductService.deleteProduct()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
     function showImage(src) {
         document.getElementById('modalImage').src = src;
     }
 
-    function addToCart() {
+    function addToCartProduct(id, name, price) {
+        const product = {
+            id: id,
+            name: name,
+            price: price
+        };
+        CartService.addToCart(product);
+
+        
         let popup = document.getElementById("popup");
         popup.classList.add("show");
 
@@ -94,6 +203,3 @@
         }, 2000);
     }
 </script>
-
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

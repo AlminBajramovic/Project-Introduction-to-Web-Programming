@@ -1,4 +1,4 @@
-var UserService = {
+var UserService = { 
   init: function () {
     var token = localStorage.getItem("user_token");
     if (token && token !== undefined) {
@@ -13,6 +13,7 @@ var UserService = {
   },
 
   login: function (entity) {
+    $.blockUI({ message: '<h3>Logging in...</h3>' }); 
     $.ajax({
       url: Constants.PROJECT_BASE_URL + "auth/login",
       type: "POST",
@@ -20,18 +21,41 @@ var UserService = {
       contentType: "application/json",
       dataType: "json",
       success: function (result) {
+        $.unblockUI();  
         localStorage.setItem("user_token", result.data.token);
         window.location.replace("index.html");  
       },
       error: function (XMLHttpRequest) {
-        alert(XMLHttpRequest.responseText || 'Login error');
+        $.unblockUI(); 
+        toastr.error(XMLHttpRequest.responseText || 'Login error');
       },
     });
   },
 
+  register: function (entity) {
+  $.blockUI({ message: '<h3>Registering...</h3>' }); 
+  $.ajax({
+    url: Constants.PROJECT_BASE_URL + "auth/register",
+    type: "POST",
+    data: JSON.stringify(entity),
+    contentType: "application/json",
+    dataType: "json",
+    success: function (result) {
+      $.unblockUI();
+      toastr.success("Registration successful. You can now log in.");
+      window.location.hash = "#login";  
+    },
+    error: function (XMLHttpRequest) {
+      $.unblockUI(); 
+      toastr.error(XMLHttpRequest.responseText || 'Registration error');
+    },
+  });
+},
+
+
   logout: function () {
     localStorage.clear();
-    window.location.replace("login.html");
+    window.location.replace("index.html#login");
   },
 
   checkRoleAndShowUI: function() {

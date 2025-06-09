@@ -1,4 +1,3 @@
-
 <body>
     <h2 class="text-center mt-3">Sale Items</h2>
     <p class="text-center text-muted">Limited-time discounts on select products!</p>
@@ -8,43 +7,43 @@
             <div class="col">
                 <div class="card h-100 sale-card">
                     <div class="d-flex align-items-center justify-content-center" style="height: 250px;">
-                        <img src="./assets/sale1.PNG" class="product-img" alt="sale1" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('./assets/sale1.PNG')">
+                        <img src="./assets/sale1.PNG" class="product-img" alt="sale1" onclick="showImage('./assets/sale1.PNG')">
                     </div>
                     <div class="card-body">
                         <p class="sale-title">High-Performance CPU - 20% Off</p>
                         <p class="text-muted">Limited-time discount on our best-selling CPU.</p>
-                        <button class="btn btn-danger" onclick="addToCart()">Buy Now</button>
+                        <button class="btn btn-danger" onclick="addToCartProduct(301, 'High-Performance CPU', 239.99)">Buy Now</button>
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="card h-100 sale-card">
                     <div class="d-flex align-items-center justify-content-center" style="height: 250px;">
-                        <img src="./assets/sale2.PNG" class="product-img" alt="sale2" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('./assets/sale2.PNG')">
+                        <img src="./assets/sale2.PNG" class="product-img" alt="sale2" onclick="showImage('./assets/sale2.PNG')">
                     </div>
                     <div class="card-body">
                         <p class="sale-title">Latest Generation GPU - 15% Off</p>
                         <p class="text-muted">Exclusive deal for high-performance Graphics Cards.</p>
-                        <button class="btn btn-danger" onclick="addToCart()">Buy Now</button>
+                        <button class="btn btn-danger" onclick="addToCartProduct(302, 'Latest Generation GPU', 499.99)">Buy Now</button>
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="card h-100 sale-card">
                     <div class="d-flex align-items-center justify-content-center" style="height: 250px;">
-                        <img src="./assets/sale3.PNG" class="product-img" alt="sale3" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('./assets/sale3.PNG')">
+                        <img src="./assets/sale3.PNG" class="product-img" alt="sale3" onclick="showImage('./assets/sale3.PNG')">
                     </div>
                     <div class="card-body">
                         <p class="sale-title">Beast Gaming Motherboard - 10% Off</p>
                         <p class="text-muted">Excellent gaming motherboard for hardcore gamers.</p>
-                        <button class="btn btn-danger" onclick="addToCart()">Buy Now</button>
+                        <button class="btn btn-danger" onclick="addToCartProduct(303, 'Beast Gaming Motherboard', 189.99)">Buy Now</button>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-
+ 
     <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -59,17 +58,26 @@
         </div>
     </div>
 
-   
     <div id="popup" class="popup">
         <i class="fas fa-check-circle"></i> Added to Cart
     </div>
 
     <script>
         function showImage(src) {
-            document.getElementById('modalImage').src = src;
+            var modalImage = document.getElementById('modalImage');
+            var imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
+            modalImage.src = src;
+            imageModal.show();
         }
 
-        function addToCart() {
+        function addToCartProduct(id, name, price) {
+            const product = {
+                id: id,
+                name: name,
+                price: price
+            };
+            CartService.addToCart(product);
+
             let popup = document.getElementById("popup");
             popup.classList.add("show");
 
@@ -79,3 +87,4 @@
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
