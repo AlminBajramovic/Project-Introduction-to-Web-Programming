@@ -15,8 +15,8 @@ function parseJwt(token) {
     }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    const content = document.getElementById("spapp");
+/*document.addEventListener("DOMContentLoaded", function () {
+    const content = document.getElementById("content");
     
     function loadPage(page) {
         fetch(`views/${page}.html`)
@@ -71,3 +71,4 @@ document.addEventListener("DOMContentLoaded", function () {
     const initialPage = location.hash.replace("#", "") || "home";
     loadPage(initialPage);
 });
+*/

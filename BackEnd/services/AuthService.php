@@ -1,6 +1,7 @@
 <?php
 require_once 'BaseService.php';
 require_once __DIR__ . '/../dao/AuthDao.php';
+require_once __DIR__ . '/../rest/config.php';
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
@@ -17,6 +18,10 @@ class AuthService extends BaseService {
     }
 
     public function register($entity) {  
+
+        if (!is_array($entity)) {
+        return ['success' => false, 'error' => 'Invalid registration data format.'];
+    }
     
         if (empty($entity['email']) || empty($entity['password']) || empty($entity['name'])) {
             return ['success' => false, 'error' => 'Name, email and password are required.'];
@@ -36,11 +41,9 @@ class AuthService extends BaseService {
             $entity['role'] = 'user';
         }
 
-        
-        $entity = parent::create($entity); 
-
-
-        unset($entity['password']);
+        $id = parent::create($entity); 
+        unset($entity['password']); // Remove password from original entity
+        $entity['id'] = $id; // Add the new ID to the entity
         return ['success' => true, 'data' => $entity];             
     }
 

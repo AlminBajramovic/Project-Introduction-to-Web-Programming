@@ -43,21 +43,39 @@ Flight::group('/auth', function() {
     *         description="Internal server error."
     *     )
     * )
-    */
-   Flight::route("POST /register", function () {
-       $data = Flight::request()->data->getData();
-
-       $response = Flight::auth_service()->register($data);
-  
-       if ($response['success']) {
-           Flight::json([
-               'message' => 'User registered successfully',
-               'data' => $response['data']
-           ]);
-       } else {
-           Flight::halt(500, $response['error']);
-       }
-   });
+    */   
+Flight::route("POST /register", function () {
+    try {
+        $body = Flight::request()->getBody();
+        $data = json_decode($body, true);
+        
+        // Debug logging
+        error_log("Raw body: " . $body);
+        error_log("Decoded data: " . print_r($data, true));
+        error_log("Is array: " . (is_array($data) ? 'yes' : 'no'));
+        error_log("JSON decode error: " . json_last_error_msg());
+        
+        if (!is_array($data)) {
+            Flight::halt(400, "Invalid registration data format. Received: " . gettype($data) . " - " . print_r($data, true));
+        }
+        
+        $response = Flight::auth_service()->register($data);
+        
+        // Move this INSIDE the try block
+        if ($response['success']) {
+            Flight::json([
+                'message' => 'User registered successfully',
+                'data' => $response['data']
+            ]);
+        } else {
+            Flight::halt(500, $response['error']);
+        }
+        
+    } catch (Exception $e) {
+        error_log("Exception in register route: " . $e->getMessage());
+        Flight::halt(500, "Internal server error: " . $e->getMessage());
+    }
+});
 
    /**
     * @OA\Post(
@@ -79,7 +97,7 @@ Flight::group('/auth', function() {
     * )
     */
    Flight::route('POST /login', function() {
-       $data = Flight::request()->data->getData();
+       $data = json_decode(Flight::request()->getBody(), true);
 
        $response = Flight::auth_service()->login($data);
   
